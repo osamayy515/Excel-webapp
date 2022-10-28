@@ -33,6 +33,18 @@ number_of_result = df[mask].shape[0]
 
 st.markdown(f'*Available Results: {number_of_result}*')
 
+# --- Group dataframe after selection
+df_grouped = df[mask].groupby(by=['Rating']).count()[['Age']]
+
+df_grouped = df_grouped.rename(columns={'Age':'Votes'})
+
+df_grouped = df_grouped.reset_index()
+
+# --- Plot bar chart
+bar_chart = px.bar(df_grouped, x='Rating', y='Votes', text='Votes', color_discrete_sequence= ['#F63366']*len(df_grouped), template='plotly_white')
+
+st.plotly_chart(bar_chart)
+
 st.dataframe(df)
 
 pie_chart = px.pie(df_participants, title='Total No. of Participants', values='Participants', names='Departments')
