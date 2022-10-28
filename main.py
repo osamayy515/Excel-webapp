@@ -26,6 +26,12 @@ age_selection = st.slider('Age:', min_value= min(ages), max_value= max(ages), va
 
 department_selection = st.multiselect('Department:', department, default=department)
 
+# --- Filter dataframe based on selection
+mask = (df['Age'].between(*age_selection)) & (df['Department'].isin(department_selection))
+
+number_of_result = df[mask].shape[0]
+
+st.markdown(f'*Available Results: {number_of_result}*')
 
 st.dataframe(df)
 
