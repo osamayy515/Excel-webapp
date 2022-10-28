@@ -50,7 +50,7 @@ col1, col2 = st.columns(2)
 
 image = Image.open('images/survey.jpg')
 
-col1.image(image, caption='Designed by pch.vector / Freepik', width=320)
+col1.image(image, caption='Designed by pch.vector / Freepik', width=340)
 
 col2.dataframe(df[mask][:5])
 
