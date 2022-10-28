@@ -18,7 +18,13 @@ df_participants = pd.read_excel(excel_file, sheet_name=sheet_name, usecols='F:G'
 
 df_participants.dropna(inplace=True)
 
+# --- Streamlit selection
+department = df['Department'].unique().tolist()
+ages = df['Age'].unique().tolist()
 
+age_selection = st.slider('Age:', min_value= min(ages), max_value= max(ages), value=(min(ages),max(ages)))
+
+department_selection = st.multiselect('Department:', department, default=department)
 
 
 st.dataframe(df)
@@ -29,5 +35,4 @@ st.plotly_chart(pie_chart)
 
 image = Image.open('images/survey.jpg')
 
-st.image(image, caption='Designed by pch.vector / Freepik',
-use_column_width=True)
+st.image(image, caption='Designed by pch.vector / Freepik',use_column_width=True)
