@@ -45,12 +45,17 @@ bar_chart = px.bar(df_grouped, x='Rating', y='Votes', text='Votes', color_discre
 
 st.plotly_chart(bar_chart)
 
-st.dataframe(df)
+# --- Display image and dataframe
+col1, col2 = st.columns(2)
 
+image = Image.open('images/survey.jpg')
+
+col1.image(image, caption='Designed by pch.vector / Freepik', width=320)
+
+col2.dataframe(df[mask][:5])
+
+# --- Plot pie chart
 pie_chart = px.pie(df_participants, title='Total No. of Participants', values='Participants', names='Departments')
 
 st.plotly_chart(pie_chart)
 
-image = Image.open('images/survey.jpg')
-
-st.image(image, caption='Designed by pch.vector / Freepik',use_column_width=True)
